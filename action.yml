@@ -1,0 +1,153 @@
+name: 'pushNotifications-action'
+description: 'Push notifications to multiple platforms.'
+version: 'v1.0.0'
+author: 'h7ml <h7ml@qq.com>'
+
+branding:
+  icon: 'message-circle'
+  color: 'green'
+  version: 'v1.0.0'
+  author: 'h7ml'
+
+inputs:
+  IS_CONSOLE:
+    description: |
+      Whether to output the log to the console. Default is true.
+    required: false
+    default: true
+  TYPE:
+    description: |
+      PushType Available message types: ServerChanTurbo, Dingtalk, CustomEmail, WechatRobot, WechatApp, PushPlus, IGot, Qmsg, XiZhi, PushDeer, Discord, Telegram, OneBot
+    required: true
+  TITLE:
+    description: The title of the notifications to create.
+    required: true
+  DESP:
+    description: The description of the notifications to create.
+    required: true
+  SCTKEY:
+    description: The SCTKEY for ServerChanTurbo notifications.
+    required: false
+  ACCESS_TOKEN:
+    description: The ACCESS_TOKEN for Dingtalk notifications.
+    required: false
+  SECRET:
+    description: The SECRET for Dingtalk notifications.
+    required: false
+  WX_ROBOT_KEY:
+    description: The WX_ROBOT_KEY for WechatRobot notifications.
+    required: false
+  MSG_TYPE:
+    description: The MSG_TYPE for WechatRobot notifications.
+    required: false
+  EMAIL_TYPE:
+    description: The EMAIL_TYPE for CustomEmail notifications.
+    required: false
+  EMAIL_TO_ADDRESS:
+    description: The EMAIL_TO_ADDRESS for CustomEmail notifications.
+    required: false
+  EMAIL_AUTH_USER:
+    description: The EMAIL_AUTH_USER for CustomEmail notifications.
+    required: false
+  EMAIL_AUTH_PASS:
+    description: The EMAIL_AUTH_PASS for CustomEmail notifications.
+    required: false
+  EMAIL_HOST:
+    description: The EMAIL_HOST for CustomEmail notifications.
+    required: false
+  EMAIL_PORT:
+    description: The EMAIL_PORT for CustomEmail notifications.
+    required: false
+  WX_APP_CORPID:
+    description: The WX_APP_CORPID for WechatApp notifications.
+    required: false
+  WX_APP_AGENTID:
+    description: The WX_APP_AGENTID for WechatApp notifications.
+    required: false
+  WX_APP_SECRET:
+    description: The WX_APP_SECRET for WechatApp notifications.
+    required: false
+  WX_APP_USERID:
+    description: The WX_APP_USERID for WechatApp notifications.
+    required: false
+  PUSH_PLUS_TOKEN:
+    description: The PUSH_PLUS_TOKEN for PushPlus notifications.
+    required: false
+  TEMPLATE_TYPE:
+    description: The TEMPLATE_TYPE for PushPlus notifications.
+    required: false
+  CHANNEL_TYPE:
+    description: The CHANNEL_TYPE for PushPlus notifications.
+    required: false
+  I_GOT_KEY:
+    description: The I_GOT_KEY for IGot notifications.
+    required: false
+  QMSG_KEY:
+    description: The QMSG_KEY for Qmsg notifications.
+    required: false
+  QMSG_QQ:
+    description: The QMSG_QQ for Qmsg notifications.
+    required: false
+  QMSG_PUSH_TYPE:
+    description: The QMSG_PUSH_TYPE for Qmsg notifications.
+    required: false
+  XI_ZHI_KEY:
+    description: The XI_ZHI_KEY for XiZhi notifications.
+    required: false
+  PUSH_DEER_PUSH_KEY:
+    description: The PUSH_DEER_PUSH_KEY for PushDeer notifications.
+    required: false
+  PUSH_DEER_ENDPOINT:
+    description: The PUSH_DEER_ENDPOINT for PushDeer notifications.
+    required: false
+  PUSH_DEER_PUSH_TYPE:
+    description: The PUSH_DEER_PUSH_TYPE for PushDeer notifications.
+    required: false
+  DISCORD_WEBHOOK:
+    description: The DISCORD_WEBHOOK for Discord notifications.
+    required: false
+  DISCORD_USERNAME:
+    description: The DISCORD_USERNAME for Discord notifications.
+    required: false
+  TELEGRAM_BOT_TOKEN:
+    description: The TELEGRAM_BOT_TOKEN for Telegram notifications.
+    required: false
+  TELEGRAM_CHAT_ID:
+    description: The TELEGRAM_CHAT_ID for Telegram notifications.
+    required: false
+  TELEGRAM_SEND_SILENTLY:
+    description: The TELEGRAM_SEND_SILENTLY for Telegram notifications.
+    required: false
+  TELEGRAM_PROTECT_CONTENT:
+    description: The TELEGRAM_PROTECT_CONTENT for Telegram notifications.
+    required: false
+  TELEGRAM_MESSAGE_THREAD_ID:
+    description: The TELEGRAM_MESSAGE_THREAD_ID for Telegram notifications.
+    required: false
+  ONE_BOT_BASE_URL:
+    description: The ONE_BOT_BASE_URL for OneBot notifications.
+    required: false
+  ONE_BOT_ACCESS_TOKEN:
+    description: The ONE_BOT_ACCESS_TOKEN for OneBot notifications.
+    required: false
+  ONE_BOT_MSG_TYPE:
+    description: The ONE_BOT_MSG_TYPE for OneBot notifications.
+    required: false
+  ONE_BOT_RECIEVER_ID:
+    description: The ONE_BOT_RECIEVER_ID for OneBot notifications.
+    required: false
+
+outputs:
+  response:
+    description: 'The response of the pushNotifications-action'
+    value: '${{ steps.pushNotifications.outputs.response }}'
+  error:
+    description: 'The error of the pushNotifications-action'
+    value: '${{ steps.pushNotifications.outputs.error }}'
+  status:
+    description: 'The status of the pushNotifications-action'
+    value: '${{ steps.pushNotifications.outputs.status }}'
+
+runs:
+  using: 'node20'
+  main: './dist/index.js'

@@ -1,0 +1,54 @@
+{
+  "name": "@dext7r/push-notifications",
+  "version": "1.0.0",
+  "description": "A GitHub Action to commit comment",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dext7r/pushNotifications"
+  },
+  "homepage": "https://github.com/dext7r/pushNotifications",
+  "bugs": {
+    "url": "https://github.com/dext7r/pushNotifications/issues"
+  },
+  "keywords": [
+    "github",
+    "action",
+    "commit",
+    "comment"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "h7ml",
+    "email": "i@h7ml.cn",
+    "url": "https://github.com/h7ml"
+  },
+  "sideEffects": [],
+  "main": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "build": "ncc build",
+    "format": "prettier --write src/*.ts",
+    "format-check": "prettier --check src/*.ts"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0",
+    "@octokit/rest": "^20.1.0",
+    "axios": "^1.2.1",
+    "dotenv": "^16.4.5",
+    "push-all-in-one": "^3.5.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.16.1",
+    "@types/node": "^20.12.8",
+    "@vercel/ncc": "0.38.1",
+    "eslint": "^9.1.1",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}

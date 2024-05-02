@@ -1,0 +1,53 @@
+name: test
+on:
+  push:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9.0.4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.0
+          cache: pnpm
+      - name: Get pnpm store directory
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: Install
+        run: pnpm install
+      - name: Lint
+        run: pnpm lint
+      - name: Prettier
+        run: pnpm format-check  
+      - name: Build
+        run: pnpm build  
+  deploy:
+    needs: lint
+    if: github.event.repository.name == 'commit-comment'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+          repository: dext7r/commit-comment
+      - name: Commit Comment
+        uses: ./
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |     
+             This commit was made with the following details:
+             - Commit ID: ${{ github.sha }}
+             - Commit Message: ${{ github.event.head_commit.message }}
+             - Run_id: ${{ github.run_id }}
+             - Repository: ${{ github.repository }}
