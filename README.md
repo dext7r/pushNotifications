@@ -1,7 +1,7 @@
 <h1 align="center">pushNotifications</h1>
 <p>
   <a href="https://www.npmjs.com/package/@dext7r/push-notifications" target="_blank">
-    <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000">
+    <img alt="Version" src="https://img.shields.io/badge/version-1.0.1-blue.svg?cacheSeconds=2592000">
   </a>
   <a href="https://github.com/dext7r/pushNotifications/actions/workflows/push-notifications.yml" target="_blank">
     <img alt="GitHub Workflow Status" src="https://github.com/dext7r/pushNotifications/actions/workflows/push-notifications.yml/badge.svg">
@@ -42,7 +42,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Run Push Notifications action
-      uses: dext7r/push-notifications@v1.0.0
+      uses: dext7r/push-notifications@v1.0.1
       with:
         TYPE: ${{ secrets.TYPE }}
         TITLE: ${{ secrets.TITLE }}

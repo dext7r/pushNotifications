@@ -18,14 +18,10 @@ async function run() {
       return
     }
     const { data } = await runPushAllInOne(title, desp, type, rest)
-    console.log(
-      '%c [ response ]-21',
-      'font-size:13px; background:pink; color:#bf2c9f;',
-      data,
-    )
     if (isConsole) {
       console.info('Notification title:', title)
       console.info('Notification type:', type)
+      console.log(data)
       console.log('Push notification successful.')
     }
     setOutput('response', data)

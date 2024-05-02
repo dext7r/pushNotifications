@@ -1,12 +1,12 @@
 name: 'pushNotifications-action'
 description: 'Push notifications to multiple platforms.'
-version: 'v1.0.0'
+version: 'v1.0.1'
 author: 'h7ml <h7ml@qq.com>'
 
 branding:
   icon: 'message-circle'
   color: 'green'
-  version: 'v1.0.0'
+  version: 'v1.0.1'
   author: 'h7ml'
 
 inputs:

@@ -1,6 +1,6 @@
 {
   "name": "@dext7r/push-notifications",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A GitHub Action to commit comment",
   "repository": {
     "type": "git",

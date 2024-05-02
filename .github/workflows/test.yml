@@ -38,11 +38,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: main
-          repository: dext7r/commit-comment
       - name: Commit Comment
-        uses: ./
+        uses: dext7r/commit-comment@v1.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |     

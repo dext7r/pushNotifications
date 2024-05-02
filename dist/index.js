@@ -67175,10 +67175,10 @@ async function run() {
             return;
         }
         const { data } = await (0, push_1.runPushAllInOne)(title, desp, type, rest);
-        console.log('%c [ response ]-21', 'font-size:13px; background:pink; color:#bf2c9f;', data);
         if (isConsole) {
             console.info('Notification title:', title);
             console.info('Notification type:', type);
+            console.log(data);
             console.log('Push notification successful.');
         }
         (0, core_1.setOutput)('response', data);
