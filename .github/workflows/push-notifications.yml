@@ -17,12 +17,7 @@ jobs:
         with:
           TYPE: Qmsg
           TITLE: push-notifications action
-          DESP: | 
-            This commit was made with the following details:
-            - Commit ID: ${{ github.sha }}
-            - Commit Message: ${{ github.event.head_commit.message }}
-            - Run_id: ${{ github.run_id }}
-            - Repository: ${{ github.repository }}
+          DESP: "Commit ID: ${{ github.sha }}, Commit Message: ${{ github.event.head_commit.message }}, Run_id: ${{ github.run_id }}, Repository: ${{ github.repository }}"
           QMSG_KEY: ${{ secrets.QMSG_KEY }}
           QMSG_QQ: ${{ secrets.QMSG_QQ }}
           QMSG_PUSH_TYPE: send
