@@ -3,8 +3,8 @@
   <a href="https://www.npmjs.com/package/@dext7r/push-notifications" target="_blank">
     <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000">
   </a>
-  <a href="https://github.com/dext7r/pushNotifications/actions?query=workflow%3ARelease" target="_blank">
-    <img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/dext7r/pushNotifications/release.yml?branch=master">
+  <a href="https://github.com/dext7r/pushNotifications/actions/workflows/push-notifications.yml" target="_blank">
+    <img alt="GitHub Workflow Status" src="https://github.com/dext7r/pushNotifications/actions/workflows/push-notifications.yml/badge.svg">
   </a>
   <img src="https://img.shields.io/badge/node-%3E%3D12-blue.svg" />
   <a href="https://github.com/dext7r/pushNotifications#readme" target="_blank">

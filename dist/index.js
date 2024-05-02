@@ -60597,6 +60597,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.config = void 0;
 const utils_1 = __nccwpck_require__(442);
 exports.config = {
+    isConsole: Boolean((0, utils_1.getInput)('IS_CONSOLE')),
     type: (0, utils_1.getInput)('TYPE'),
     title: (0, utils_1.getInput)('TITLE'),
     desp: (0, utils_1.getInput)('DESP'),
@@ -60807,23 +60808,37 @@ dotenv_1.default.config();
  * @param name 参数名称
  * @returns  参数值
  */
-const getInput = (name) => {
+function getInput(name) {
+    // eslint-disable-next-line node/prefer-global/process
     return (0, core_1.getInput)(name) || process.env[name] || '';
-};
+}
 exports.getInput = getInput;
-exports.msgTypeList = ["ServerChanTurbo", "Dingtalk", "CustomEmail", "WechatRobot", "WechatApp", "PushPlus", "IGot", "Qmsg", "XiZhi", "PushDeer", "Discord", "Telegram", "OneBot"];
+exports.msgTypeList = [
+    'ServerChanTurbo',
+    'Dingtalk',
+    'CustomEmail',
+    'WechatRobot',
+    'WechatApp',
+    'PushPlus',
+    'IGot',
+    'Qmsg',
+    'XiZhi',
+    'PushDeer',
+    'Discord',
+    'Telegram',
+    'OneBot',
+];
 /**
  * 检查消息类型是否合法
  *
  * @param msgType 消息类型
  * @returns 是否合法
  */
-const checkMsgType = async (msgType) => {
-    if (!exports.msgTypeList.includes(msgType)) {
+async function checkMsgType(msgType) {
+    if (!exports.msgTypeList.includes(msgType))
         return false;
-    }
     return true;
-};
+}
 exports.checkMsgType = checkMsgType;
 
 
@@ -67147,21 +67162,26 @@ const push_1 = __nccwpck_require__(5394);
 const utils_1 = __nccwpck_require__(442);
 async function run() {
     try {
-        const { title, desp, type, ...rest } = config_1.config;
+        const { title, desp, type, isConsole, ...rest } = config_1.config;
         console.log('Push notification started...');
         const isMsgTypeValid = await (0, utils_1.checkMsgType)(type);
         if (!isMsgTypeValid) {
-            console.error('Invalid message type!');
-            console.info(`You entered message type: ${type}`);
-            console.info('Available message types:', utils_1.msgTypeList.join(', '));
+            if (isConsole) {
+                console.error('Invalid message type!');
+                console.info(`You entered message type: ${type}`);
+                console.info('Available message types:', utils_1.msgTypeList.join(', '));
+            }
             (0, core_1.setOutput)('status', 'failed');
             return;
         }
-        console.info('Notification title:', title);
-        console.info('Notification type:', type);
-        const response = await (0, push_1.runPushAllInOne)(title, desp, type, rest);
-        console.log('Push notification successful.');
-        (0, core_1.setOutput)('response', response);
+        const { data } = await (0, push_1.runPushAllInOne)(title, desp, type, rest);
+        console.log('%c [ response ]-21', 'font-size:13px; background:pink; color:#bf2c9f;', data);
+        if (isConsole) {
+            console.info('Notification title:', title);
+            console.info('Notification type:', type);
+            console.log('Push notification successful.');
+        }
+        (0, core_1.setOutput)('response', data);
         (0, core_1.setOutput)('status', 'success');
     }
     catch (error) {

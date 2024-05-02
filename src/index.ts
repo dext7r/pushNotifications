@@ -17,14 +17,18 @@ async function run() {
       setOutput('status', 'failed')
       return
     }
-    const response = await runPushAllInOne(title, desp, type, rest)
-
+    const { data } = await runPushAllInOne(title, desp, type, rest)
+    console.log(
+      '%c [ response ]-21',
+      'font-size:13px; background:pink; color:#bf2c9f;',
+      data,
+    )
     if (isConsole) {
       console.info('Notification title:', title)
       console.info('Notification type:', type)
       console.log('Push notification successful.')
     }
-    setOutput('response', response)
+    setOutput('response', data)
     setOutput('status', 'success')
   } catch (error: any) {
     setFailed(error.message)
