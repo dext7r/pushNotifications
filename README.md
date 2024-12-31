@@ -42,7 +42,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Run Push Notifications action
-      uses: dext7r/push-notifications@v1.0.1
+      uses: dext7r/pushNotifications
       with:
         TYPE: ${{ secrets.TYPE }}
         TITLE: ${{ secrets.TITLE }}
