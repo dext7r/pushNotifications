@@ -95,15 +95,10 @@ export async function runPushAllInOne(
       const pushplus = new PushPlus({
         PUSH_PLUS_TOKEN,
       })
-      const response = await pushplus.send(
-        title,
-        desp,
-        {
-
-          template: TEMPLATE_TYPE,
-          channel: CHANNEL_TYPE,
-        },
-      )
+      const response = await pushplus.send(title, desp, {
+        template: TEMPLATE_TYPE,
+        channel: CHANNEL_TYPE,
+      })
       return response
     }
     case 'IGot': {
@@ -119,14 +114,10 @@ export async function runPushAllInOne(
       const qmsg = new Qmsg({
         QMSG_KEY,
       })
-      const response = await qmsg.send(
-        title,
-        desp,
-        {
-          qq: QMSG_QQ,
-          type: QMSG_PUSH_TYPE,
-        },
-      )
+      const response = await qmsg.send(title, desp, {
+        qq: QMSG_QQ,
+        type: QMSG_PUSH_TYPE,
+      })
       return response
     }
     case 'XiZhi': {
@@ -171,23 +162,16 @@ export async function runPushAllInOne(
       return response
     }
     case 'OneBot': {
-      const {
-        ONE_BOT_BASE_URL,
-        ONE_BOT_ACCESS_TOKEN,
-        ONE_BOT_RECIEVER_ID,
-      } = pushConfig[type]
+      const { ONE_BOT_BASE_URL, ONE_BOT_ACCESS_TOKEN, ONE_BOT_RECIEVER_ID } =
+        pushConfig[type]
       const oneBot = new OneBot({
         ONE_BOT_BASE_URL,
         ONE_BOT_ACCESS_TOKEN,
       })
-      const response = await oneBot.send(
-        title,
-        desp,
-        {
-          message_type: 'private',
-          user_id: Number(ONE_BOT_RECIEVER_ID),
-        },
-      )
+      const response = await oneBot.send(title, desp, {
+        message_type: 'private',
+        user_id: Number(ONE_BOT_RECIEVER_ID),
+      })
       return response
     }
     default:
