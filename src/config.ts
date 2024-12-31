@@ -1,6 +1,5 @@
 import type {
   CustomEmailType,
-  OneBotMsgType,
   PushDeerPushType,
   PushPlusChannelType,
   PushPlusTemplateType,

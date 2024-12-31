@@ -49133,7 +49133,7 @@ async function runPushAllInOne(title, desp, type, pushConfig) {
             return response;
         }
         case 'OneBot': {
-            const { ONE_BOT_BASE_URL, ONE_BOT_ACCESS_TOKEN, ONE_BOT_MSG_TYPE, ONE_BOT_RECIEVER_ID, } = pushConfig[type];
+            const { ONE_BOT_BASE_URL, ONE_BOT_ACCESS_TOKEN, ONE_BOT_RECIEVER_ID, } = pushConfig[type];
             const oneBot = new push_all_in_one_1.OneBot({
                 ONE_BOT_BASE_URL,
                 ONE_BOT_ACCESS_TOKEN,

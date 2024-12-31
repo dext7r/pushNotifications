@@ -174,7 +174,6 @@ export async function runPushAllInOne(
       const {
         ONE_BOT_BASE_URL,
         ONE_BOT_ACCESS_TOKEN,
-        ONE_BOT_MSG_TYPE,
         ONE_BOT_RECIEVER_ID,
       } = pushConfig[type]
       const oneBot = new OneBot({
