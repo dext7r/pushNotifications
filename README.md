@@ -84,7 +84,7 @@ jobs:
         ONE_BOT_ACCESS_TOKEN: ${{ secrets.ONE_BOT_ACCESS_TOKEN }}
         ONE_BOT_MSG_TYPE: ${{ secrets.ONE_BOT_MSG_TYPE }}
         ONE_BOT_RECIEVER_ID: ${{ secrets.ONE_BOT_RECIEVER_ID }}
-```
+  ```
 
 ## 参数
 

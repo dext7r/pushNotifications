@@ -1,11 +1,11 @@
 import type {
-  ChannelType,
   CustomEmailType,
-  MsgType,
   OneBotMsgType,
   PushDeerPushType,
+  PushPlusChannelType,
+  PushPlusTemplateType,
   QmsgPushType,
-  TemplateType,
+  WechatAppMsgType,
 } from 'push-all-in-one'
 import type { PushConfig, PushType } from './type'
 import { getInput } from './utils'
@@ -31,7 +31,7 @@ export const config: pushConfig & PushConfig = {
   },
   WechatRobot: {
     WX_ROBOT_KEY: getInput('WX_ROBOT_KEY'),
-    MSG_TYPE: getInput('MSG_TYPE') as MsgType,
+    MSG_TYPE: getInput('MSG_TYPE') as WechatAppMsgType,
   },
   CustomEmail: {
     EMAIL_TYPE: getInput('EMAIL_TYPE') as CustomEmailType,
@@ -46,11 +46,13 @@ export const config: pushConfig & PushConfig = {
     WX_APP_AGENTID: Number(getInput('WX_APP_AGENTID')),
     WX_APP_SECRET: getInput('WX_APP_SECRET'),
     WX_APP_USERID: getInput('WX_APP_USERID'),
+    WX_APP_TOUSER: getInput('WX_APP_TOUSER'),
+    WX_APP_MSG_TYPE: getInput('WX_APP_MSG_TYPE') as WechatAppMsgType,
   },
   PushPlus: {
     PUSH_PLUS_TOKEN: getInput('PUSH_PLUS_TOKEN'),
-    TEMPLATE_TYPE: getInput('TEMPLATE_TYPE') as TemplateType,
-    CHANNEL_TYPE: getInput('CHANNEL_TYPE') as ChannelType,
+    TEMPLATE_TYPE: getInput('TEMPLATE_TYPE') as PushPlusTemplateType,
+    CHANNEL_TYPE: getInput('CHANNEL_TYPE') as PushPlusChannelType,
   },
   IGot: {
     I_GOT_KEY: getInput('I_GOT_KEY'),
@@ -82,7 +84,7 @@ export const config: pushConfig & PushConfig = {
   OneBot: {
     ONE_BOT_BASE_URL: getInput('ONE_BOT_BASE_URL'),
     ONE_BOT_ACCESS_TOKEN: getInput('ONE_BOT_ACCESS_TOKEN'),
-    ONE_BOT_MSG_TYPE: getInput('ONE_BOT_MSG_TYPE') as OneBotMsgType,
+    ONE_BOT_MSG_TYPE: 'private',
     ONE_BOT_RECIEVER_ID: Number(getInput('ONE_BOT_RECIEVER_ID')),
   },
 }

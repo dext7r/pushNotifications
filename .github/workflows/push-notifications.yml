@@ -1,78 +1,58 @@
-name: deploy
+name: Push Notifications
+
 on:
-  pull_request:
-    branches:
-      - main
-  pull_request_target:
   push:
     branches:
       - main
+
 jobs:
-  deploy:
-    needs: lint
+  push-notifications:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./
-        id: push-notifications
-        with:
-          TYPE: Qmsg
-          TITLE: push-notifications action
-          DESP: "Commit ID: ${{ github.sha }}, Commit Message: ${{ github.event.head_commit.message }}, Repository: ${{ github.repository }}"
-          QMSG_KEY: ${{ secrets.QMSG_KEY }}
-          QMSG_QQ: ${{ secrets.QMSG_QQ }}
-          QMSG_PUSH_TYPE: send
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 9.0.4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.12.0
-          cache: pnpm
-      - name: Get pnpm store directory
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-      - name: Setup pnpm cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - name: Install
-        run: pnpm install
-      - name: Lint
-        run: pnpm lint
-      - name: Prettier
-        run: pnpm format-check  
-      - name: Build
-        run: pnpm build  
-  pushNotifications:
-    needs: lint
-    if: github.event.repository.name == 'pushNotifications'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: main
-          repository: dext7r/commit-comment
-      - name: Commit Comment
-        uses: ./
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          body: |     
-              This commit was made with the following details:
-              - Commit ID: ${{ github.sha }}
-              - Commit Message: ${{ github.event.head_commit.message }}
-              - Run_id: ${{ github.run_id }}
-              - Repository: ${{ github.repository }}
-              - Commit Time: ${{ github.event.head_commit.timestamp }}
-              - Commit Author: ${{ github.event.head_commit.author.name }}
-              - Commit Author Email: ${{ github.event.head_commit.author.email }}
-              - Commit Author Date: ${{ github.event.head_commit.author.date }}
-              - Commit Committer: ${{ github.event.head_commit.committer.name }}
-              - Commit Committer Email: ${{ github.event.head_commit.committer.email }}
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run Push Notifications action
+      uses: dext7r/push-notifications@v1.0.2
+      with:
+        TYPE: ${{ secrets.TYPE }}
+        TITLE: ${{ secrets.TITLE }}
+        DESP: ${{ secrets.DESP }}
+        SCTKEY: ${{ secrets.SCTKEY }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        SECRET: ${{ secrets.SECRET }}
+        WX_ROBOT_KEY: ${{ secrets.WX_ROBOT_KEY }}
+        MSG_TYPE: ${{ secrets.MSG_TYPE }}
+        EMAIL_TYPE: ${{ secrets.EMAIL_TYPE }}
+        EMAIL_TO_ADDRESS: ${{ secrets.EMAIL_TO_ADDRESS }}
+        EMAIL_AUTH_USER: ${{ secrets.EMAIL_AUTH_USER }}
+        EMAIL_AUTH_PASS: ${{ secrets.EMAIL_AUTH_PASS }}
+        EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+        EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
+        WX_APP_CORPID: ${{ secrets.WX_APP_CORPID }}
+        WX_APP_AGENTID: ${{ secrets.WX_APP_AGENTID }}
+        WX_APP_SECRET: ${{ secrets.WX_APP_SECRET }}
+        WX_APP_USERID: ${{ secrets.WX_APP_USERID }}
+        PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
+        TEMPLATE_TYPE: ${{ secrets.TEMPLATE_TYPE }}
+        CHANNEL_TYPE: ${{ secrets.CHANNEL_TYPE }}
+        I_GOT_KEY: ${{ secrets.I_GOT_KEY }}
+        QMSG_KEY: ${{ secrets.QMSG_KEY }}
+        QMSG_QQ: ${{ secrets.QMSG_QQ }}
+        QMSG_PUSH_TYPE: ${{ secrets.QMSG_PUSH_TYPE }}
+        XI_ZHI_KEY: ${{ secrets.XI_ZHI_KEY }}
+        PUSH_DEER_PUSH_KEY: ${{ secrets.PUSH_DEER_PUSH_KEY }}
+        PUSH_DEER_ENDPOINT: ${{ secrets.PUSH_DEER_ENDPOINT }}
+        PUSH_DEER_PUSH_TYPE: ${{ secrets.PUSH_DEER_PUSH_TYPE }}
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        DISCORD_USERNAME: ${{ secrets.DISCORD_USERNAME }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_SEND_SILENTLY: ${{ secrets.TELEGRAM_SEND_SILENTLY }}
+        TELEGRAM_PROTECT_CONTENT: ${{ secrets.TELEGRAM_PROTECT_CONTENT }}
+        TELEGRAM_MESSAGE_THREAD_ID: ${{ secrets.TELEGRAM_MESSAGE_THREAD_ID }}
+        ONE_BOT_BASE_URL: ${{ secrets.ONE_BOT_BASE_URL }}
+        ONE_BOT_ACCESS_TOKEN: ${{ secrets.ONE_BOT_ACCESS_TOKEN }}
+        ONE_BOT_MSG_TYPE: ${{ secrets.ONE_BOT_MSG_TYPE }}
+        ONE_BOT_RECIEVER_ID: ${{ secrets.ONE_BOT_RECIEVER_ID }}

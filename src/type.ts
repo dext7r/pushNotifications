@@ -1,11 +1,11 @@
 import type {
-  ChannelType,
   CustomEmailType,
-  MsgType,
   OneBotMsgType,
   PushDeerPushType,
+  PushPlusChannelType,
+  PushPlusTemplateType,
   QmsgPushType,
-  TemplateType,
+  WechatAppMsgType,
 } from 'push-all-in-one'
 
 export type PushConfig = Required<{
@@ -26,18 +26,20 @@ export type PushConfig = Required<{
   }
   WechatRobot?: {
     WX_ROBOT_KEY: string
-    MSG_TYPE: MsgType
+    MSG_TYPE: WechatAppMsgType
   }
   WechatApp?: {
     WX_APP_CORPID: string
     WX_APP_AGENTID: number
     WX_APP_SECRET: string
     WX_APP_USERID: string
+    WX_APP_TOUSER: string
+    WX_APP_MSG_TYPE: WechatAppMsgType
   }
   PushPlus?: {
     PUSH_PLUS_TOKEN: string
-    TEMPLATE_TYPE?: TemplateType
-    CHANNEL_TYPE?: ChannelType
+    TEMPLATE_TYPE?: PushPlusTemplateType
+    CHANNEL_TYPE?: PushPlusChannelType
   }
   IGot?: {
     I_GOT_KEY: string
@@ -69,7 +71,7 @@ export type PushConfig = Required<{
   OneBot?: {
     ONE_BOT_BASE_URL: string
     ONE_BOT_ACCESS_TOKEN?: string
-    ONE_BOT_MSG_TYPE: OneBotMsgType
+    ONE_BOT_MSG_TYPE: 'private'
     ONE_BOT_RECIEVER_ID: number
   }
 }>
